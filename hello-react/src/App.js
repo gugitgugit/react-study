@@ -1,14 +1,10 @@
 import React from "react";
-import MyComponent from "./MyComponent";
-import Say from "./Say";
+import EventPractice from "./EventPractice";
 
 const App = () => {
   return (
     <>
-      <MyComponent name="React" favoriteNumber={1}>
-        리액트
-      </MyComponent>
-      <Say />
+      <EventPractice />
     </>
   );
 };
