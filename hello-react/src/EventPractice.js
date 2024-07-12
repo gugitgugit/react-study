@@ -2,15 +2,30 @@ import React from "react";
 import { useState } from "react";
 
 const EventPractice = () => {
-  const [state, setState] = useState({ username: "", message: "" });
+  const [form, setForm] = useState({
+    username: "",
+    message: "",
+  });
+
+  const { username, message } = form;
 
   const handleChange = (e) => {
-    setState({ [e.target.name]: e.target.value });
+    const nextForm = {
+      ...form,
+      [e.target.name]: e.target.value,
+    };
+    setForm(nextForm);
   };
 
   const handleClick = () => {
-    alert(state.username + ": " + state.message);
-    setState({ username: "", message: "" });
+    alert(username + ": " + message);
+    setForm({ username: "", message: "" });
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleClick();
+    }
   };
 
   return (
@@ -20,15 +35,16 @@ const EventPractice = () => {
         type="text"
         name="username"
         placeholder="사용자명"
-        value={state.username}
+        value={username}
         onChange={handleChange}
       />
       <input
         type="text"
         name="message"
         placeholder="아무거나 입력해 보세요"
-        value={state.message}
+        value={message}
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
       <button onClick={handleClick}>확인</button>
     </div>
